@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLADE-FX | GFX, Logos & Video Editing</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+    header {
+      padding: 20px;
+      background-color: #1f1f1f;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #00ffff;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      background-color: #181818;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .services, .portfolio, .contact {
+      margin-bottom: 50px;
+    }
+    .service-list li {
+      margin: 10px 0;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      background-color: #1f1f1f;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #00ffff;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .success-message {
+      color: #00ff00;
+      margin-top: 20px;
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BLADE-X</h1>
+    <p>GFX Making | Logos | Video Editing</p>
+  </header>
+
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Order Now</a>
+  </nav>
+
+  <section id="services" class="services">
+    <h2>Services</h2>
+    <ul class="service-list">
+      <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
+      <li>🖌 Logo Design (Custom & Unique)</li>
+      <li>🎬 Video Editing (Montages, Shorts, Reels)</li>
+    </ul>
+  </section>
+
+  <section id="portfolio" class="portfolio">
+    <h2>Portfolio</h2>
+    <p>Check out my work on Instagram! (Add a grid of images or IG feed here.)</p>
+  
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/JvWVjmkA5A0"
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen></iframe>
+
+
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Place an Order</h2>
+    <form action="https://formspree.io/f/mdkeykqr" method="POST" onsubmit="showMessage()">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label for="service">Service Needed</label>
+        <textarea id="service" name="service" placeholder="Describe what you want (GFX, logo, video, etc.)" required></textarea>
+      </div>
+      <button type="submit">Send Request</button>
+    </form>
+    <p class="success-message" id="successMsg">Thank you! Your request has been sent.</p>
+    <p>Or contact me directly on:</p>
+    <ul>
+      <li>Email: <strong>shivamanand98350@email.com</strong></li>
+      <li>Instagram: <strong>@brt.blade</strong></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BLADE-FX. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showMessage() {
+      document.getElementById("successMsg").style.display = "block";
+    }
+  </script>
+</body>
+</html>
