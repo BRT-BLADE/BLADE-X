@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLADE-X | GFX, Logos & Video Editing</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -11,17 +11,69 @@
       box-sizing: border-box;
     }
 
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       font-family: 'Orbitron', sans-serif;
-      background-color: #0e0e0e;
-      color: #ffffff;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Loading screen */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease 2s forwards;
+    }
+
+    #loader h1 {
+      font-size: 2.5rem;
+      color: #00fff7;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00fff7; }
+      50% { text-shadow: 0 0 30px #00fff7; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    #tsparticles {
+      position: fixed;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: -1;
+    }
+
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     header {
       padding: 30px;
-      background: linear-gradient(90deg, #0f0f0f, #1a1a1a);
       text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
       box-shadow: 0 0 20px #00fff7;
     }
 
@@ -32,9 +84,20 @@
       text-shadow: 0 0 10px #00fff7;
     }
 
-    header p {
-      color: #aaa;
+    header .typewriter {
+      font-size: 1.2em;
+      color: #ccc;
       margin-top: 10px;
+      height: 1.5em;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00fff7;
+      animation: typing 4s steps(30) infinite;
+    }
+
+    @keyframes typing {
+      0%, 100% { width: 0; }
+      50% { width: 100%; }
     }
 
     nav {
@@ -42,9 +105,7 @@
       justify-content: center;
       gap: 30px;
       padding: 15px;
-      background-color: #111;
-      border-top: 1px solid #222;
-      border-bottom: 1px solid #222;
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     nav a {
@@ -63,12 +124,15 @@
       padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00fff7;
+      margin-top: 30px;
     }
 
     h2 {
       font-size: 2em;
       color: #00fff7;
-      margin-bottom: 20px;
       text-shadow: 0 0 10px #00fff7;
     }
 
@@ -77,13 +141,11 @@
       font-size: 1.1em;
     }
 
-    .Videos iframe {
+    iframe {
       border-radius: 15px;
+      width: 100%;
+      height: 500px;
       box-shadow: 0 0 25px #00fff7;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
     }
 
     input, textarea {
@@ -120,9 +182,9 @@
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #111;
+      background-color: rgba(0, 0, 0, 0.6);
       color: #888;
-      border-top: 1px solid #222;
+      margin-top: 40px;
     }
 
     ul {
@@ -131,10 +193,6 @@
 
     ul li {
       margin-bottom: 8px;
-    }
-
-    a {
-      color: #00fff7;
     }
 
     @media (max-width: 768px) {
@@ -150,9 +208,15 @@
   </style>
 </head>
 <body>
+  <!-- Loading animation -->
+  <div id="loader"><h1>Loading BLADE-X...</h1></div>
+
+  <!-- Particle background -->
+  <div id="tsparticles"></div>
+
   <header>
     <h1>BLADE-X</h1>
-    <p>GFX Making | Logos | Video Editing</p>
+    <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
   </header>
 
   <nav>
@@ -170,12 +234,10 @@
     </ul>
   </section>
 
-  <section id="Videos" class="Videos">
+  <section id="portfolio" class="Videos">
     <h2>Videos</h2>
     <p>Check out my work on Instagram!</p>
-    <iframe width="100%" height="500" src="https://www.youtube.com/embed/JvWVjmkA5A0"
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/JvWVjmkA5A0" frameborder="0" allowfullscreen></iframe>
   </section>
 
   <section id="contact" class="contact">
@@ -183,15 +245,15 @@
     <form action="https://formspree.io/f/mdkeykqr" method="POST" onsubmit="showMessage()">
       <div class="form-group">
         <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+        <input type="text" id="name" name="name" required />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        <input type="email" id="email" name="email" required />
       </div>
       <div class="form-group">
         <label for="service">Service Needed</label>
-        <textarea id="service" name="service" placeholder="Describe what you want (GFX, logo, video, etc.)" required></textarea>
+        <textarea id="service" name="service" required></textarea>
       </div>
       <button type="submit">Send Request</button>
     </form>
@@ -204,9 +266,38 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 BLADE-X. All rights reserved.</p>
+    <p>&copy; 2025 BLADE-FX. All rights reserved.</p>
   </footer>
 
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script>
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: true, zIndex: -2 },
+      particles: {
+        number: { value: 50 },
+        color: { value: "#00fff7" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: { min: 1, max: 4 } },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          outModes: "out"
+        }
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "repulse" } },
+        modes: { repulse: { distance: 100 } }
+      },
+      detectRetina: true
+    });
+  </script>
+
+  <!-- Show success message -->
   <script>
     function showMessage() {
       document.getElementById("successMsg").style.display = "block";
