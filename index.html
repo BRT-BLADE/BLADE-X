@@ -19,7 +19,6 @@
       overflow-x: hidden;
     }
 
-    /* Loading screen */
     #loader {
       position: fixed;
       top: 0; left: 0;
@@ -106,6 +105,7 @@
       gap: 30px;
       padding: 15px;
       background-color: rgba(0, 0, 0, 0.6);
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -139,6 +139,28 @@
     .service-list li {
       margin: 10px 0;
       font-size: 1.1em;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .stat {
+      margin: 15px;
+    }
+
+    .stat h3 {
+      font-size: 2.5em;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .stat p {
+      color: #ccc;
     }
 
     input, textarea {
@@ -197,14 +219,20 @@
         flex-direction: column;
         gap: 10px;
       }
+
+      .stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .stat h3 {
+        font-size: 2em;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Loading animation -->
   <div id="loader"><h1>Loading BLADE-X...</h1></div>
-
-  <!-- Particle background -->
   <div id="tsparticles"></div>
 
   <header>
@@ -214,10 +242,11 @@
 
   <nav>
     <a href="#services">Services</a>
+    <a href="#stats">Stats</a>
     <a href="#contact">Order Now</a>
   </nav>
 
-  <section id="services" class="services">
+  <section id="services">
     <h2>Services</h2>
     <ul class="service-list">
       <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
@@ -226,7 +255,25 @@
     </ul>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="stats">
+    <h2>Why Choose BLADE-X?</h2>
+    <div class="stats">
+      <div class="stat">
+        <h3 id="gfxCount">0+</h3>
+        <p>GFX Delivered</p>
+      </div>
+      <div class="stat">
+        <h3 id="logoCount">0+</h3>
+        <p>Logos Designed</p>
+      </div>
+      <div class="stat">
+        <h3 id="videoCount">0+</h3>
+        <p>Videos Edited</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
     <h2>Place an Order</h2>
     <form action="https://formspree.io/f/mdkeykqr" method="POST" onsubmit="showMessage()">
       <div class="form-group">
@@ -252,10 +299,10 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 BLADE-X. All rights reserved.</p>
+    <p>&copy; 2025 BLADE-FX. All rights reserved.</p>
   </footer>
 
-  <!-- Particles.js -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script>
     tsParticles.load("tsparticles", {
@@ -281,10 +328,24 @@
       },
       detectRetina: true
     });
-  </script>
 
-  <!-- Show success message -->
-  <script>
+    // Counter Animation
+    function animateCounter(id, end) {
+      let current = 0;
+      const el = document.getElementById(id);
+      const interval = setInterval(() => {
+        current += 1;
+        el.textContent = `${current}+`;
+        if (current >= end) clearInterval(interval);
+      }, 40);
+    }
+
+    window.onload = () => {
+      animateCounter("gfxCount", 100);
+      animateCounter("logoCount", 50);
+      animateCounter("videoCount", 75);
+    };
+
     function showMessage() {
       document.getElementById("successMsg").style.display = "block";
     }
