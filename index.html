@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,89 +8,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body, html {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
       color: #fff;
       overflow-x: hidden;
-    }
-
-    #loader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOut 1s ease 2s forwards;
-    }
-
-    #loader h1 {
-      font-size: 2.5rem;
-      color: #00fff7;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 10px #00fff7; }
-      50% { text-shadow: 0 0 30px #00fff7; }
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    #tsparticles {
-      position: fixed;
-      z-index: -2;
-      width: 100%;
-      height: 100%;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
       z-index: -1;
     }
 
-    body {
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    header {
-      padding: 30px;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 20px #00fff7;
+    header, nav, section, footer {
+      background-color: rgba(0,0,0,0.6);
+      margin: 10px auto;
+      max-width: 1000px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px #00fff7;
     }
 
     header h1 {
-      margin: 0;
       font-size: 3em;
       color: #00fff7;
-      text-shadow: 0 0 10px #00fff7;
+      text-align: center;
     }
 
-    header .typewriter {
+    .typewriter {
+      text-align: center;
       font-size: 1.2em;
-      color: #ccc;
-      margin-top: 10px;
-      height: 1.5em;
-      overflow: hidden;
       white-space: nowrap;
+      overflow: hidden;
       border-right: 2px solid #00fff7;
       animation: typing 4s steps(30) infinite;
     }
@@ -102,253 +60,168 @@
     nav {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.6);
+      gap: 20px;
       flex-wrap: wrap;
     }
 
     nav a {
-      color: #fff;
+      color: #00fff7;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00fff7;
-      text-shadow: 0 0 10px #00fff7;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-      background-color: rgba(0, 0, 0, 0.75);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00fff7;
-      margin-top: 30px;
     }
 
     h2 {
-      font-size: 2em;
       color: #00fff7;
       text-shadow: 0 0 10px #00fff7;
     }
 
     .service-list li {
-      margin: 10px 0;
-      font-size: 1.1em;
+      margin-bottom: 10px;
     }
 
-    .stats {
+    .projects {
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
-      text-align: center;
-      margin-top: 20px;
+      gap: 20px;
+      justify-content: center;
     }
 
-    .stat {
-      margin: 15px;
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00fff7;
+      border-radius: 10px;
+      width: 300px;
+      overflow: hidden;
+      box-shadow: 0 0 15px #00fff7;
     }
 
-    .stat h3 {
-      font-size: 2.5em;
+    .project-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .project-card .content {
+      padding: 15px;
+    }
+
+    .project-card h3 {
+      margin: 0;
       color: #00fff7;
-      text-shadow: 0 0 10px #00fff7;
     }
 
-    .stat p {
-      color: #ccc;
+    .project-card p {
+      font-size: 0.9em;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #00fff7;
+      color: black;
+      padding: 8px 12px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
     }
 
     input, textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       background-color: #1a1a1a;
       border: 1px solid #444;
       color: white;
-      border-radius: 8px;
+      border-radius: 5px;
     }
 
     button {
       background-color: #00fff7;
-      color: #000;
-      padding: 12px 25px;
+      color: black;
+      padding: 10px 20px;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 5px;
       font-weight: bold;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #00e5d1;
-      box-shadow: 0 0 15px #00fff7;
-    }
-
-    .success-message {
-      color: #00ff88;
-      margin-top: 20px;
-      display: none;
+      cursor: pointer;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: #888;
-      margin-top: 40px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    ul li {
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2em;
-      }
-
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .stats {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .stat h3 {
-        font-size: 2em;
-      }
+      font-size: 0.9em;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div id="loader"><h1>Loading BLADE-X...</h1></div>
-  <div id="tsparticles"></div>
 
-  <header>
-    <h1>BLADE-X</h1>
-    <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
-  </header>
+<header>
+  <h1>BLADE-X</h1>
+  <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
+</header>
 
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#stats">Stats</a>
-    <a href="#contact">Order Now</a>
-  </nav>
+<nav>
+  <a href="#services">Services</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <section id="services">
-    <h2>Services</h2>
-    <ul class="service-list">
-      <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
-      <li>🖌 Logo Design (Custom & Unique)</li>
-      <li>🎬 Video Editing (Montages, Shorts, Reels)</li>
-    </ul>
-  </section>
+<section id="services">
+  <h2>Services</h2>
+  <ul class="service-list">
+    <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
+    <li>🖌 Logo Design (Custom & Unique)</li>
+    <li>🎬 Video Editing (Montages, Shorts, Reels)</li>
+  </ul>
+</section>
 
-  <section id="stats">
-    <h2>Why Choose BLADE-X?</h2>
-    <div class="stats">
-      <div class="stat">
-        <h3 id="gfxCount">0+</h3>
-        <p>GFX Delivered</p>
-      </div>
-      <div class="stat">
-        <h3 id="logoCount">0+</h3>
-        <p>Logos Designed</p>
-      </div>
-      <div class="stat">
-        <h3 id="videoCount">0+</h3>
-        <p>Videos Edited</p>
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project-card">
+      <img src="background.jpg" alt="Project 1" />
+      <div class="content">
+        <h3>Free Fire GFX Pack</h3>
+        <p>Custom thumbnails and GFX for FF gameplay.</p>
+        <a href="https://drive.google.com/" target="_blank">View</a>
       </div>
     </div>
-  </section>
-
-  <section id="contact">
-    <h2>Place an Order</h2>
-    <form action="https://formspree.io/f/mdkeykqr" method="POST" onsubmit="showMessage()">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required />
+    <div class="project-card">
+      <img src="background.jpg" alt="Project 2" />
+      <div class="content">
+        <h3>Logo Showcase</h3>
+        <p>A few pro logo designs made for clients.</p>
+        <a href="https://instagram.com/" target="_blank">View</a>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <div class="form-group">
-        <label for="service">Service Needed</label>
-        <textarea id="service" name="service" required></textarea>
-      </div>
-      <button type="submit">Send Request</button>
-    </form>
-    <p class="success-message" id="successMsg">Thank you! Your request has been sent.</p>
-    <p>Or contact me directly on:</p>
-    <ul>
-      <li><i class="fas fa-envelope"></i> Email: <strong>shivamanand98350@email.com</strong></li>
-      <li><i class="fab fa-instagram"></i> Instagram: <strong>@brt.blade</strong></li>
-    </ul>
-  </section>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 BLADE-FX. All rights reserved.</p>
-  </footer>
+<section id="contact">
+  <h2>Contact / Order Now</h2>
+  <form action="https://formspree.io/f/mdkeykqr" method="POST">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" name="name" required />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label>Service Needed</label>
+      <textarea name="service" required></textarea>
+    </div>
+    <button type="submit">Send</button>
+  </form>
+  <p>Email: <strong>shivamanand98350@email.com</strong></p>
+  <p>Instagram: <strong>@brt.blade</strong></p>
+</section>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-  <script>
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: true, zIndex: -2 },
-      particles: {
-        number: { value: 50 },
-        color: { value: "#00fff7" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: { min: 1, max: 4 } },
-        move: {
-          enable: true,
-          speed: 1,
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: "out"
-        }
-      },
-      interactivity: {
-        events: { onHover: { enable: true, mode: "repulse" } },
-        modes: { repulse: { distance: 100 } }
-      },
-      detectRetina: true
-    });
+<footer>
+  &copy; 2025 BLADE-X. All rights reserved.
+</footer>
 
-    // Counter Animation
-    function animateCounter(id, end) {
-      let current = 0;
-      const el = document.getElementById(id);
-      const interval = setInterval(() => {
-        current += 1;
-        el.textContent = `${current}+`;
-        if (current >= end) clearInterval(interval);
-      }, 40);
-    }
-
-    window.onload = () => {
-      animateCounter("gfxCount", 100);
-      animateCounter("logoCount", 50);
-      animateCounter("videoCount", 75);
-    };
-
-    function showMessage() {
-      document.getElementById("successMsg").style.display = "block";
-    }
-  </script>
 </body>
 </html>
