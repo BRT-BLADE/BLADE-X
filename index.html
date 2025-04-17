@@ -6,22 +6,16 @@
   <title>BLADE-X | GFX, Logos & Video Editing</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body, html {
+    * { box-sizing: border-box; }
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
       color: #00fff7;
       overflow-x: hidden;
-      cursor: url('cursor.png'), auto;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     body::before {
@@ -29,20 +23,13 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       z-index: -1;
     }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-    }
-
     header, nav, section, footer {
-      background-color: rgba(0, 0, 0, 0.6);
-      margin: 20px auto;
+      background-color: rgba(0,0,0,0.6);
+      margin: 10px auto;
       max-width: 1000px;
       border-radius: 10px;
       padding: 20px;
@@ -51,8 +38,9 @@
 
     header h1 {
       font-size: 3em;
-      color: #00fff7;
       text-align: center;
+      color: #00fff7;
+      text-shadow: 0 0 20px #00fff7;
     }
 
     .typewriter {
@@ -84,7 +72,7 @@
     }
 
     nav a:hover {
-      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+      text-shadow: 0 0 10px #00fff7;
     }
 
     h2 {
@@ -95,6 +83,14 @@
     .service-list li {
       margin-bottom: 10px;
       list-style: none;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .service-list li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
     }
 
     .form-group {
@@ -130,56 +126,62 @@
       text-align: center;
       font-size: 0.9em;
       color: #ccc;
+      text-shadow: 0 0 10px #00fff7;
     }
 
-    /* Scroll to Top */
-    #scrollToTop {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
+    /* Neon Glow Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+    ::-webkit-scrollbar-thumb {
       background: #00fff7;
-      color: black;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      box-shadow: 0 0 15px #00fff7;
-      z-index: 999;
+      border-radius: 5px;
     }
 
+    /* Music Button */
+    #playBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 999;
+      background-color: black;
+      border: 2px solid #00fff7;
+      color: #00fff7;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
-
-<audio autoplay loop id="bg-music" style="display: none;">
+<!-- Background Music -->
+<audio id="bg-music" loop>
   <source src="bg-music-v2.mp3" type="audio/mp3">
 </audio>
+<button id="playBtn" onclick="document.getElementById('bg-music').play()">▶ Play Music</button>
 
-
-<header class="reveal">
+<header>
   <h1>BLADE-X</h1>
   <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
 </header>
 
-<nav class="reveal">
+<nav>
   <a href="#services">Services</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="services" class="reveal">
+<section id="services">
   <h2>Services</h2>
   <ul class="service-list">
-    <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
-    <li>🖌 Logo Design (Custom & Unique)</li>
-    <li>🎬 Video Editing (Montages, Shorts, Reels)</li>
+    <li>GFX Thumbnails (YouTube, Gaming, etc.)</li>
+    <li>Logo Design (Custom & Unique)</li>
+    <li>Video Editing (Montages, Shorts, Reels)</li>
   </ul>
 </section>
 
-<section id="contact" class="reveal">
+<section id="contact">
   <h2>Contact / Order Now</h2>
   <form action="https://formspree.io/f/mdkeykqr" method="POST">
     <div class="form-group">
@@ -200,63 +202,9 @@
   <p>Instagram: <strong>@brt.blade</strong></p>
 </section>
 
-<footer class="reveal">
+<footer>
   &copy; 2025 BLADE-X. All rights reserved.
 </footer>
-
-<!-- Scroll To Top Button -->
-<button id="scrollToTop"><i class="fas fa-arrow-up"></i></button>
-
-<script>
-  // Audio autoplay workaround
-  window.addEventListener("click", function () {
-    const audio = document.getElementById("bg-music");
-    if (audio.paused) {
-      audio.volume = 0.4;
-      audio.play();
-    }
-  });
-
-  // Scroll Reveal
-  ScrollReveal().reveal('.reveal', {
-    distance: '50px',
-    duration: 1000,
-    easing: 'ease-in-out',
-    origin: 'bottom',
-    interval: 200
-  });
-
-  // Scroll to top
-  const scrollBtn = document.getElementById("scrollToTop");
-  window.addEventListener("scroll", () => {
-    scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
-  });
-  scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Particles.js
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 80 },
-      color: { value: "#00fff7" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5 },
-      size: { value: 3 },
-      move: { enable: true, speed: 1.5 },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#00fff7",
-        opacity: 0.4,
-        width: 1
-      }
-    },
-    interactivity: {
-      events: {
-        onhover: { enable: true, mode: "repulse" }
-      }
-    }
-  });
-</script>
 
 </body>
 </html>
