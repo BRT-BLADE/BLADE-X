@@ -5,21 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLADE-X | GFX, Logos & Video Editing</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+    html {
       scroll-behavior: smooth;
-      cursor: none;
+      cursor: url('cursor.png'), auto;
     }
 
-    html, body {
+    body, html {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
       color: #fff;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
       overflow-x: hidden;
+      background-color: #000;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
     }
 
     body::before {
@@ -28,60 +37,23 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
-      z-index: 0;
-    }
-
-    #tsparticles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    #preloader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .loader {
-      width: 60px;
-      height: 60px;
-      border: 6px solid #00fff7;
-      border-top: 6px solid transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      box-shadow: 0 0 20px #00fff7;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      z-index: -1;
     }
 
     header, nav, section, footer {
-      position: relative;
       background-color: rgba(0,0,0,0.6);
       margin: 10px auto;
       max-width: 1000px;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
-      border: 1px solid #00fff7;
-      z-index: 1;
+      box-shadow: 0 0 20px #00fff7;
     }
 
     header h1 {
       font-size: 3em;
       color: #00fff7;
       text-align: center;
-      text-shadow: 0 0 10px #00fff7;
+      text-shadow: 0 0 20px #00fff7;
     }
 
     .typewriter {
@@ -90,18 +62,12 @@
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid #00fff7;
-      width: 0;
-      margin: 10px auto;
-      animation: typing 4s steps(30) infinite, blink 0.8s step-end infinite alternate;
+      animation: typing 4s steps(30) infinite;
     }
 
     @keyframes typing {
       0%, 100% { width: 0; }
       50% { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
     }
 
     nav {
@@ -115,14 +81,13 @@
       color: #00fff7;
       text-decoration: none;
       font-weight: bold;
-      padding: 10px;
-      border: 2px solid transparent;
+      text-shadow: 0 0 5px #00fff7;
       transition: 0.3s;
     }
 
     nav a:hover {
-      border-color: #00fff7;
-      text-shadow: 0 0 10px #00fff7;
+      color: #fff;
+      text-shadow: 0 0 15px #00fff7, 0 0 30px #00fff7;
     }
 
     h2 {
@@ -132,14 +97,11 @@
 
     .service-list li {
       margin-bottom: 10px;
-      font-size: 1.1em;
       text-shadow: 0 0 5px #00fff7;
-      transition: 0.3s;
     }
 
-    .service-list li:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 20px #00fff7;
+    .form-group {
+      margin-bottom: 15px;
     }
 
     input, textarea {
@@ -149,7 +111,7 @@
       border: 1px solid #00fff7;
       color: white;
       border-radius: 5px;
-      box-shadow: 0 0 10px #00fff7;
+      box-shadow: 0 0 5px #00fff7;
     }
 
     button {
@@ -161,11 +123,11 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 0 10px #00fff7;
-      transition: 0.3s;
+      transition: transform 0.2s;
     }
 
     button:hover {
-      background-color: #00e6d2;
+      transform: scale(1.05);
       box-shadow: 0 0 20px #00fff7;
     }
 
@@ -176,46 +138,45 @@
       text-shadow: 0 0 5px #00fff7;
     }
 
-    /* Custom Cursor */
-    .cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #00fff7;
-      border-radius: 50%;
+    /* Scroll to top */
+    #scrollTopBtn {
       position: fixed;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease-out;
-      box-shadow: 0 0 10px #00fff7;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00fff7;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 15px #00fff7;
+      z-index: 99;
+    }
+
+    #scrollTopBtn:hover {
+      box-shadow: 0 0 30px #00fff7;
     }
   </style>
 </head>
 <body>
 
-<!-- Preloader -->
-<div id="preloader">
-  <div class="loader"></div>
-</div>
+<div id="particles-js"></div>
+<audio id="bgMusic" src="bg-music.mp3" autoplay loop></audio>
+<audio id="clickSound" src="click-sound.mp3"></audio>
 
-<!-- Particle background -->
-<div id="tsparticles"></div>
-
-<!-- Custom cursor -->
-<div class="cursor" id="cursor"></div>
-
-<!-- Main Website -->
-<header class="reveal">
+<header>
   <h1>BLADE-X</h1>
   <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
 </header>
 
-<nav class="reveal">
+<nav>
   <a href="#services">Services</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="services" class="reveal">
+<section id="services">
   <h2>Services</h2>
   <ul class="service-list">
     <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
@@ -224,7 +185,7 @@
   </ul>
 </section>
 
-<section id="contact" class="reveal">
+<section id="contact">
   <h2>Contact / Order Now</h2>
   <form action="https://formspree.io/f/mdkeykqr" method="POST">
     <div class="form-group">
@@ -239,61 +200,55 @@
       <label>Service Needed</label>
       <textarea name="service" required></textarea>
     </div>
-    <button type="submit">Send</button>
+    <button type="submit" onclick="document.getElementById('clickSound').play()">Send</button>
   </form>
   <p>Email: <strong>shivamanand98350@email.com</strong></p>
   <p>Instagram: <strong>@brt.blade</strong></p>
 </section>
 
-<footer class="reveal">
+<footer>
   &copy; 2025 BLADE-X. All rights reserved.
 </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+<button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
 <script>
-  // Particles
-  tsParticles.load("tsparticles", {
-    background: { color: "transparent" },
-    fullScreen: { enable: false },
+  // Scroll Reveal
+  ScrollReveal().reveal('section', {
+    delay: 300,
+    distance: '50px',
+    origin: 'bottom',
+    easing: 'ease-in-out',
+    reset: true
+  });
+
+  // Scroll to top
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    scrollTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<script>
+  // ParticlesJS config
+  particlesJS("particles-js", {
     particles: {
       number: { value: 80 },
       color: { value: "#00fff7" },
-      links: { enable: true, color: "#00fff7", distance: 150, opacity: 0.5 },
-      move: { enable: true, speed: 1 },
-      size: { value: { min: 1, max: 3 } },
-      opacity: { value: 0.5 }
-    }
-  });
-
-  // Preloader
-  window.addEventListener("load", () => {
-    document.getElementById("preloader").style.display = "none";
-  });
-
-  // Custom Cursor
-  const cursor = document.getElementById("cursor");
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-  });
-
-  // Scroll Reveal Animation
-  const reveals = document.querySelectorAll(".reveal");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
+      shape: { type: "circle" },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      move: { enable: true, speed: 2 }
+    },
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" }
       }
-    });
-  }, { threshold: 0.1 });
-
-  reveals.forEach(el => {
-    el.style.opacity = 0;
-    el.style.transform = "translateY(50px)";
-    el.style.transition = "all 0.8s ease";
-    observer.observe(el);
+    }
   });
 </script>
 
