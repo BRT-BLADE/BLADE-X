@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BLADE-X | GFX, Logos & Video Editing</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      cursor: none;
+    }
 
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
       color: #fff;
-      overflow-x: hidden;
       background: url('background.jpg') no-repeat center center fixed;
       background-size: cover;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -25,27 +28,27 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
-      z-index: -1;
+      z-index: 0;
     }
 
     #tsparticles {
       position: fixed;
+      width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2;
+      z-index: 0;
     }
 
     #preloader {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: #000;
-      z-index: 9999;
+      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 9999;
     }
 
     .loader {
@@ -63,6 +66,7 @@
     }
 
     header, nav, section, footer {
+      position: relative;
       background-color: rgba(0,0,0,0.6);
       margin: 10px auto;
       max-width: 1000px;
@@ -70,13 +74,14 @@
       padding: 20px;
       box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
       border: 1px solid #00fff7;
+      z-index: 1;
     }
 
     header h1 {
       font-size: 3em;
       color: #00fff7;
       text-align: center;
-      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+      text-shadow: 0 0 10px #00fff7;
     }
 
     .typewriter {
@@ -129,10 +134,12 @@
       margin-bottom: 10px;
       font-size: 1.1em;
       text-shadow: 0 0 5px #00fff7;
+      transition: 0.3s;
     }
 
-    .form-group {
-      margin-bottom: 15px;
+    .service-list li:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 20px #00fff7;
     }
 
     input, textarea {
@@ -153,13 +160,13 @@
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
-      transition: 0.3s ease;
+      box-shadow: 0 0 10px #00fff7;
+      transition: 0.3s;
     }
 
     button:hover {
       background-color: #00e6d2;
-      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
+      box-shadow: 0 0 20px #00fff7;
     }
 
     footer {
@@ -168,30 +175,47 @@
       color: #ccc;
       text-shadow: 0 0 5px #00fff7;
     }
+
+    /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00fff7;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      box-shadow: 0 0 10px #00fff7;
+    }
   </style>
 </head>
 <body>
 
-<!-- Loader -->
+<!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>
 </div>
 
-<!-- Particles Background -->
+<!-- Particle background -->
 <div id="tsparticles"></div>
 
-<!-- Main Content -->
-<header>
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Main Website -->
+<header class="reveal">
   <h1>BLADE-X</h1>
   <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
 </header>
 
-<nav>
+<nav class="reveal">
   <a href="#services">Services</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="services">
+<section id="services" class="reveal">
   <h2>Services</h2>
   <ul class="service-list">
     <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
@@ -200,7 +224,7 @@
   </ul>
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal">
   <h2>Contact / Order Now</h2>
   <form action="https://formspree.io/f/mdkeykqr" method="POST">
     <div class="form-group">
@@ -221,36 +245,55 @@
   <p>Instagram: <strong>@brt.blade</strong></p>
 </section>
 
-<footer>
+<footer class="reveal">
   &copy; 2025 BLADE-X. All rights reserved.
 </footer>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 <script>
-  // Load Particles
+  // Particles
   tsParticles.load("tsparticles", {
-    fullScreen: { enable: false },
     background: { color: "transparent" },
+    fullScreen: { enable: false },
     particles: {
       number: { value: 80 },
       color: { value: "#00fff7" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5 },
-      size: { value: { min: 1, max: 3 } },
+      links: { enable: true, color: "#00fff7", distance: 150, opacity: 0.5 },
       move: { enable: true, speed: 1 },
-      links: {
-        enable: true,
-        color: "#00fff7",
-        distance: 100,
-        opacity: 0.3
-      }
+      size: { value: { min: 1, max: 3 } },
+      opacity: { value: 0.5 }
     }
   });
 
   // Preloader
   window.addEventListener("load", () => {
     document.getElementById("preloader").style.display = "none";
+  });
+
+  // Custom Cursor
+  const cursor = document.getElementById("cursor");
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  // Scroll Reveal Animation
+  const reveals = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = "translateY(50px)";
+    el.style.transition = "all 0.8s ease";
+    observer.observe(el);
   });
 </script>
 
