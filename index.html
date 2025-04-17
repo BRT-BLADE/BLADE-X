@@ -9,26 +9,19 @@
   <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
-    * { box-sizing: border-box; }
-    html {
+    * {
+      box-sizing: border-box;
       scroll-behavior: smooth;
-      cursor: url('cursor.png'), auto;
     }
-
     body, html {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
-      color: #fff;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #00fff7;
       overflow-x: hidden;
-      background-color: #000;
-    }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
+      cursor: url('cursor.png'), auto;
     }
 
     body::before {
@@ -40,20 +33,26 @@
       z-index: -1;
     }
 
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
     header, nav, section, footer {
-      background-color: rgba(0,0,0,0.6);
-      margin: 10px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 20px auto;
       max-width: 1000px;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 0 20px #00fff7;
+      box-shadow: 0 0 25px #00fff7;
     }
 
     header h1 {
       font-size: 3em;
       color: #00fff7;
       text-align: center;
-      text-shadow: 0 0 20px #00fff7;
     }
 
     .typewriter {
@@ -81,13 +80,11 @@
       color: #00fff7;
       text-decoration: none;
       font-weight: bold;
-      text-shadow: 0 0 5px #00fff7;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 15px #00fff7, 0 0 30px #00fff7;
+      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
     }
 
     h2 {
@@ -97,7 +94,7 @@
 
     .service-list li {
       margin-bottom: 10px;
-      text-shadow: 0 0 5px #00fff7;
+      list-style: none;
     }
 
     .form-group {
@@ -108,10 +105,9 @@
       width: 100%;
       padding: 10px;
       background-color: #1a1a1a;
-      border: 1px solid #00fff7;
+      border: 1px solid #444;
       color: white;
       border-radius: 5px;
-      box-shadow: 0 0 5px #00fff7;
     }
 
     button {
@@ -123,27 +119,25 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 0 10px #00fff7;
-      transition: transform 0.2s;
+      transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00fff7;
+      box-shadow: 0 0 20px #00fff7, 0 0 40px #00fff7;
     }
 
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #ccc;
-      text-shadow: 0 0 5px #00fff7;
     }
 
-    /* Scroll to top */
-    #scrollTopBtn {
+    /* Scroll to Top */
+    #scrollToTop {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #00fff7;
+      bottom: 30px;
+      right: 30px;
+      background: #00fff7;
       color: black;
       border: none;
       padding: 10px 15px;
@@ -152,31 +146,28 @@
       cursor: pointer;
       display: none;
       box-shadow: 0 0 15px #00fff7;
-      z-index: 99;
+      z-index: 999;
     }
 
-    #scrollTopBtn:hover {
-      box-shadow: 0 0 30px #00fff7;
-    }
   </style>
 </head>
 <body>
 
 <div id="particles-js"></div>
-<audio id="bg-music" src="bg-music.mp3" autoplay loop></audio>
-<audio id="clickSound" src="click-sound.mp3"></audio>
 
-<header>
+<audio id="bg-music" src="bg-music.mp3" loop></audio>
+
+<header class="reveal">
   <h1>BLADE-X</h1>
   <div class="typewriter">GFX | Logos | Edits – Like Never Before</div>
 </header>
 
-<nav>
+<nav class="reveal">
   <a href="#services">Services</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="services">
+<section id="services" class="reveal">
   <h2>Services</h2>
   <ul class="service-list">
     <li>🎨 GFX Thumbnails (YouTube, Gaming, etc.)</li>
@@ -185,7 +176,7 @@
   </ul>
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal">
   <h2>Contact / Order Now</h2>
   <form action="https://formspree.io/f/mdkeykqr" method="POST">
     <div class="form-group">
@@ -200,40 +191,46 @@
       <label>Service Needed</label>
       <textarea name="service" required></textarea>
     </div>
-    <button type="submit" onclick="document.getElementById('clickSound').play()">Send</button>
+    <button type="submit">Send</button>
   </form>
   <p>Email: <strong>shivamanand98350@email.com</strong></p>
   <p>Instagram: <strong>@brt.blade</strong></p>
 </section>
 
-<footer>
+<footer class="reveal">
   &copy; 2025 BLADE-X. All rights reserved.
 </footer>
 
-<button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+<!-- Scroll To Top Button -->
+<button id="scrollToTop"><i class="fas fa-arrow-up"></i></button>
 
 <script>
+  // Audio autoplay workaround
+  window.addEventListener("click", function () {
+    const audio = document.getElementById("bg-music");
+    if (audio.paused) {
+      audio.volume = 0.4;
+      audio.play();
+    }
+  });
+
   // Scroll Reveal
-  ScrollReveal().reveal('section', {
-    delay: 300,
+  ScrollReveal().reveal('.reveal', {
     distance: '50px',
-    origin: 'bottom',
+    duration: 1000,
     easing: 'ease-in-out',
-    reset: true
+    origin: 'bottom',
+    interval: 200
   });
 
   // Scroll to top
-  const scrollTopBtn = document.getElementById("scrollTopBtn");
-  window.onscroll = function () {
-    scrollTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
-  };
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+  const scrollBtn = document.getElementById("scrollToTop");
+  window.addEventListener("scroll", () => {
+    scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+  scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-<script>
-  // ParticlesJS config
+  // Particles.js
   particlesJS("particles-js", {
     particles: {
       number: { value: 80 },
@@ -241,12 +238,18 @@
       shape: { type: "circle" },
       opacity: { value: 0.5 },
       size: { value: 3 },
-      move: { enable: true, speed: 2 }
+      move: { enable: true, speed: 1.5 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#00fff7",
+        opacity: 0.4,
+        width: 1
+      }
     },
     interactivity: {
       events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
+        onhover: { enable: true, mode: "repulse" }
       }
     }
   });
